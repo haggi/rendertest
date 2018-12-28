@@ -1,0 +1,39 @@
+<fragment uiName="hSurfaceCombiner" name="hSurfaceCombiner" type="plumbing" class="ShadeFragment" version="1.0" feature_level="0">
+    <description><![CDATA[Combines inputs for the hSurface shader.]]></description>
+    <properties>
+        <float3 name="diffuseColor" />
+        <float3 name="diffuseInput" />
+        <float3 name="specInput" />
+    </properties>
+    <values>
+        <float3 name="diffuseColor" value="0.0 0.0 1.0" />
+        <float3 name="diffuseInput" value="1.0 1.0 1.0" />
+        <float3 name="specInput" value="1.0 0.0 0.0" />
+    </values>
+    <outputs>
+        <struct name="mayaSurfaceShaderOutput" struct_name="mayaSurfaceShaderOutput" />
+    </outputs>
+    <implementation>
+        <implementation render="OGSRenderer" language="Cg" lang_version="2.1">
+            <function_name val="hSurfaceCombiner" />
+            <source>
+                <![CDATA[
+mayaSurfaceShaderOutput hSurfaceCombiner(
+                float3 diffuseColor,
+                float3 diffuseInput, 
+                float3 specInput)
+{
+    mayaSurfaceShaderOutput result;
+
+    result.outColor = diffuseColor * diffuseInput;
+    result.outTransparency = float3(0.0f, 0.0f, 0.0f);
+    result.outGlowColor = float3(0.0f, 0.0f, 0.0f);
+    result.outMatteOpacity = float3(1.0f, 1.0f, 1.0f);
+    result.outSurfaceFinal = float4(result.outColor, 1.0f);
+    return result;
+}
+                ]]>
+            </source>
+        </implementation>
+    </implementation>
+</fragment>

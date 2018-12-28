@@ -1,0 +1,10 @@
+
+shader hSurface(
+    color diffuseColor = color(.25, .25, .25),
+    float diffuseMultiplier = 1.0,
+    float diffuseRoughness = 0.0,
+    output closure color result = 0
+)
+{
+    result = diffuse(N) * diffuseMultiplier * diffuseColor;
+}

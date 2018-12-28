@@ -1,0 +1,7 @@
+*.pyc
+*.oso
+shader/unused
+*.tx
+*.tex
+mayaProject/images/tmp
+.mayaSwatches

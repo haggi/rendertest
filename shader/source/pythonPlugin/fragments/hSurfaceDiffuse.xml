@@ -1,0 +1,40 @@
+<fragment uiName="hSurfaceDiffuse" name="hSurfaceDiffuse" type="plumbing" class="ShadeFragment" version="1.0" feature_level="0">
+    <description><![CDATA[Diffuse fragment shader.]]></description>
+    <properties>
+        <float3 name="diffuseColor" />
+        <float3 name="Nw" flags="varyingInputParam" />
+        <float3 name="Vw"/>
+        <float3 name="Lw"/>
+        <float3 name="SLw"/>
+        <float3 name="diffuseI"/>        
+        <float3 name="specularI"/>        
+    </properties>
+    <values>
+        <float3 name="diffuseColor" value="1.0 0.0 1.0" />
+    </values>
+    <outputs>
+        <float3 name="outColor"/>
+    </outputs>
+    <implementation>
+        <implementation render="OGSRenderer" language="Cg" lang_version="2.1">
+            <function_name val="hSurfaceDiffuse" />
+            <source>
+                <![CDATA[                
+                        float3 hSurfaceDiffuse(
+                            float3 diffuseColor,
+                            float3 Nw,
+                            float3 Vw,
+                            float3 Lw,
+                            float3 SLw,
+                            float3 diffuseI)
+                        {
+                            float3 result = diffuseColor;
+                            float dotNL = saturate(dot(Nw, Vw));
+                            result = diffuseColor * dotNL;
+                            return (result);
+                        }
+                ]]>
+            </source>
+        </implementation>
+    </implementation>
+</fragment>
