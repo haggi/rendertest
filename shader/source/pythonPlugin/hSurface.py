@@ -10,7 +10,7 @@ import maya.api.OpenMayaRender as OpenMayaRender
 
 logger = logging.getLogger("render")
 
-NODE_ID = OpenMaya.MTypeId(0x106E20)
+NODE_ID = OpenMaya.MTypeId(0x0011CF56)
 
 
 class hSurface(OpenMayaMPx.MPxNode):

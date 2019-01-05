@@ -2,24 +2,23 @@
     <fragments>
         <fragment_ref name="maya16LightAccum" ref="maya16LightAccum" />
         <fragment_ref name="mayaSurfaceShaderOutput" ref="mayaSurfaceShaderOutput" />
-        <fragment_ref name="hSurfaceDiffuse" ref="hSurfaceDiffuse" />        
-        <fragment_ref name="hSurfaceCombiner" ref="hSurfaceCombiner" />        
+        <fragment_ref name="hSurfaceFragment" ref="hSurfaceFragment" />        
     </fragments>
     <connections>
-        <connect from="hSurfaceDiffuse.outColor" to="maya16LightAccum.scaledDiffuse" />
-        <connect from="hSurfaceDiffuse.outColor" to="maya16LightAccum.scaledSpecular" />
+        <connect from="hSurfaceFragment.outColor" to="maya16LightAccum.scaledDiffuse" />
+        <connect from="hSurfaceFragment.outColor" to="maya16LightAccum.scaledSpecular" />
         <connect from="maya16LightAccum.scaledDiffuse" to="hSurfaceCombiner.diffuseColor" />
         <connect from="maya16LightAccum.scaledSpecular" to="hSurfaceCombiner.specInput" />
         <connect from="hSurfaceCombiner.mayaSurfaceShaderOutput" to="mayaSurfaceShaderOutput.mayaSurfaceShaderOutput" />
     </connections>
     <properties>
-        <float3 name="diffuseColor" ref="hSurfaceDiffuse.diffuseColor" />
-        <float3 name="Nw" ref="hSurfaceDiffuse.N" flags="varyingInputParam" />
-        <float3 name="Vw" ref="hSurfaceDiffuse.V"/>
-        <float3 name="Lw" ref="hSurfaceDiffuse.L"/>
-        <float3 name="SLw" ref="hSurfaceDiffuse.SL"/>
-        <float3 name="diffuseI" ref="hSurfaceDiffuse.diffuseI" />
-        <float3 name="specularI" ref="hSurfaceDiffuse.specularI" />
+        <float3 name="diffuseColor" ref="hSurfaceFragment.diffuseColor" />
+        <float3 name="Nw" ref="hSurfaceFragment.N" flags="varyingInputParam" />
+        <float3 name="Vw" ref="hSurfaceFragment.V"/>
+        <float3 name="Lw" ref="hSurfaceFragment.L"/>
+        <float3 name="SLw" ref="hSurfaceFragment.SL"/>
+        <float3 name="diffuseI" ref="hSurfaceFragment.diffuseI" />
+        <float3 name="specularI" ref="hSurfaceFragment.specularI" />
         <string name="selector" ref="maya16LightAccum.selector" />
     </properties>
     <values>

@@ -1,10 +1,38 @@
 
-shader hSurface(
-    color diffuseColor = color(.25, .25, .25),
-    float diffuseMultiplier = 1.0,
-    float diffuseRoughness = 0.0,
-    output closure color result = 0
+shader hSurface
+[[ 
+    string maya_classification = "surface", string niceName = "Haggi's Surfaceshader", string maya_typeID = "0x0011CF56", // 3delight metadata
+    string as_node_name = "hSurface", int as_maya_type_id = 0x0011CF56, string as_maya_classification = "drawdb/shader/surface:shader/surface" // appleseed metadata
+]]
+(
+    color diffuseColor = color(.25, .25, .25)
+    [[
+        string as_maya_attribute_name = "diffuseColor",
+        string as_maya_attribute_short_name = "dfc",
+        string label = "Diffuse Color",
+        string page = "Diffuse"
+     ]],
+    float diffuseMultiplier = 1.0
+    [[
+        string as_maya_attribute_name = "diffuseMultiplier",
+        string as_maya_attribute_short_name = "dfm",
+        string label = "Diffuse Multiplier",
+        float min = 0.0,
+        float softMax = 1.0,
+        string page = "Diffuse"
+     ]],
+    float diffuseRoughness = 0.0
+    [[
+        string as_maya_attribute_name = "diffuseRoughness",
+        string as_maya_attribute_short_name = "dfr",
+        string label = "Diffuse Roughness",
+        float min = 0.0,
+        float max = 1.0,
+        string page = "Diffuse"
+     ]],
+
+    output closure color outColor = 0 // output has to be called outColor for 3delight to avoid crash
 )
 {
-    result = diffuse(N) * diffuseMultiplier * diffuseColor;
+    outColor = oren_nayar(N, diffuseRoughness) * diffuseMultiplier * diffuseColor;
 }

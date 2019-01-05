@@ -3,5 +3,5 @@
 shader/unused
 *.tx
 *.tex
-mayaProject/images/tmp
+shader/maya/images/tmp
 .mayaSwatches
